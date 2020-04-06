@@ -1,5 +1,6 @@
 from imblearn.over_sampling import SMOTE
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 
 def balanse_dataset(X, y):
     """
@@ -8,7 +9,8 @@ def balanse_dataset(X, y):
     X = dataset.drop(['user_id', 'is_churned'], axis=1)
     y = dataset['is_churned']
 
-    X_mm = MinMaxScaler().fit_transform(X)
+    scaler = StandardScaler()
+    X_mm = scaler.fit_transform(X)
 
     X_train, X_test, y_train, y_test = train_test_split(X_mm,
                                                         y,
